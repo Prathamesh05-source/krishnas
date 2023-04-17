@@ -1,6 +1,6 @@
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from .models import Client
+from .models import Client,Project
 from .permissions import IsOwnerOrReadOnly
 from .serializers import ClientSerializer
 
@@ -20,6 +20,15 @@ class RetrieveUpdateDestroyClientAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 
+class ListCreateProjectAPIView(ListCreateAPIView):
+    serializer_class = ClientSerializer
+    queryset = Project.objects.all()
+    permission_classes = [IsAuthenticated]
+
+class RetrieveUpdateDestroyProjectAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = ClientSerializer
+    queryset = Project.objects.all()
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 
 
